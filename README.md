@@ -1,149 +1,73 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 🤖 BIA: Sua Consultora Financeira Inteligente
 
-## Contexto
+Bem-vindo ao repositório da **BIA** (Business Intelligence Assistant), um agente financeiro proativo desenvolvido para transformar a gestão de finanças pessoais através de IA Generativa.
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+## 🌟 O que é a BIA?
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
+A BIA é mais do que um chatbot; é uma consultora financeira que utiliza a técnica de **RAG (Retrieval-Augmented Generation)** para analisar os dados reais do cliente (João Silva) e fornecer insights proativos sobre metas, gastos e investimentos.
 
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
-
----
-
-## O Que Você Deve Entregar
-
-### 1. Documentação do Agente
-
-Defina **o que** seu agente faz e **como** ele funciona:
-
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+### Principais Funcionalidades
+- **Análise Proativa:** Identifica gargalos financeiros em seus gastos mensais.
+- **Gestão de Metas:** Acompanhamento em tempo real da Reserva de Emergência e metas de longo prazo.
+- **Sugestões Educativas:** Recomenda produtos financeiros adequados ao perfil de risco do usuário.
+- **Interface Moderna:** Dashboard interativo construído com Streamlit.
 
 ---
 
-### 2. Base de Conhecimento
+## 🚀 Como Rodar o Projeto
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
+Siga os passos abaixo para iniciar a BIA em seu ambiente local:
 
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
-
----
-
-### 3. Prompts do Agente
-
-Documente os prompts que definem o comportamento do seu agente:
-
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
-
----
-
-### 5. Avaliação e Métricas
-
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
-
+### 1. Preparar o Ambiente
+Clone o repositório e crie o ambiente virtual:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+
+### 2. Configuração (Opcional)
+Renomeie o arquivo `.env.example` para `.env` e adicione sua chave de API (OpenAI ou Google Gemini) para habilitar as respostas inteligentes. Caso contrário, a BIA funcionará com lógica de resposta simulada (Mock).
+
+### 3. Iniciar a Aplicação
+```bash
+streamlit run src/app.py
 ```
 
 ---
 
-## Dicas Finais
+## 📁 Estrutura do Repositório
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+```text
+.
+├── BACKLOG.md           # Planejamento completo das 4 semanas
+├── requirements.txt      # Dependências do projeto
+├── data/                 # Base de dados (CSV/JSON)
+├── docs/                 # Documentação detalhada do agente
+│   ├── 01-documentacao-agente.md
+│   ├── 02-base-conhecimento.md
+│   ├── 03-prompts.md
+│   ├── 04-metricas.md
+│   └── 05-pitch.md
+└── src/                  # Código-fonte da aplicação Streamlit
+```
+
+---
+
+## 📄 Documentação do Projeto
+
+O desenvolvimento seguiu uma trilha estruturada de 4 semanas:
+1. **Semana 1:** [Documentação e Base de Conhecimento](docs/01-documentacao-agente.md)
+2. **Semana 2:** [Engenharia de Prompts](docs/03-prompts.md)
+3. **Semana 3:** [Arquitetura e Desenvolvimento](src/README.md)
+4. **Semana 4:** [Métricas e Pitch](docs/04-metricas.md)
+
+---
+
+## 🎥 Pitch Final
+O roteiro para a apresentação de 3 minutos está disponível em: [`docs/05-pitch.md`](docs/05-pitch.md).
+
+---
+
+## 🛡️ Segurança e Privacidade
+Este protótipo foi construído com guardrails estritos para garantir que dados sensíveis (senhas, CPFs) nunca sejam compartilhados ou acessados inapropriadamente pela IA.

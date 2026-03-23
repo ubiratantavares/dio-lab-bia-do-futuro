@@ -2,17 +2,17 @@
 
 ## Dados Utilizados
 
-Descreva se usou os arquivos da pasta `data`, por exemplo:
+O agente utiliza a base de dados mockada completa para garantir um contexto 360º do cliente João Silva:
 
 | Arquivo | Formato | Utilização no Agente |
-|---------|---------|---------------------|
-| `historico_atendimento.csv` | CSV | Contextualizar interações anteriores |
-| `perfil_investidor.json` | JSON | Personalizar recomendações |
-| `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
-| `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
+| --- | --- | --- |
+| `historico_atendimento.csv` | CSV | Utilizado para saber que João já perguntou sobre CDB e Tesouro Selic no passado. |
+| `perfil_investidor.json` | JSON | Base para determinar o risco aceitável e as metas vigentes (Reserva/Apartamento). |
+| `produtos_financeiros.json` | JSON | Catálogo de produtos usados para sugerir onde colocar a economia mensal. |
+| `transacoes.csv` | CSV | Fonte principal para análise de fluxo de caixa e identificação de excessos de gastos. |
 
 > [!TIP]
-> **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
+> Os dados em `transacoes.csv` foram expandidos para cobrir um mês completo (Outubro/2025), permitindo que o agente calcule a "sobra" mensal com precisão.
 
 ---
 
@@ -20,21 +20,23 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 > Você modificou ou expandiu os dados mockados? Descreva aqui.
 
-[Sua descrição aqui]
+Sim. Expandi o histórico de transações em `data/transacoes.csv` para incluir despesas recorrentes (Internet, Conta de Luz) e uma transação simbólica de investimento, a fim de testar se o agente reconhece hábitos disciplinados.
 
 ---
 
 ## Estratégia de Integração
 
 ### Como os dados são carregados?
+
 > Descreva como seu agente acessa a base de conhecimento.
 
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos são carregados via `pandas` (CSV) e `json.load` (JSON) no carregamento inicial da aplicação Streamlit. Eles são convertidos em representações de texto estruturado (Markdown/YAML) para serem incluídos no contexto da janela de conversa da LLM.
 
 ### Como os dados são usados no prompt?
+
 > Os dados vão no system prompt? São consultados dinamicamente?
 
-[Sua descrição aqui]
+O perfil do investidor e as metas são incluídos no **System Prompt**. Já as transações e o catálogo de produtos são inseridos dinamicamente conforme a necessidade da pergunta do usuário (RAG Lite).
 
 ---
 
@@ -42,14 +44,16 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 > Mostre um exemplo de como os dados são formatados para o agente.
 
-```
+```text
 Dados do Cliente:
+CONTEXTO DO CLIENTE:
 - Nome: João Silva
 - Perfil: Moderado
-- Saldo disponível: R$ 5.000
+- Saldo p/ Reserva de Emergência: R$ 10.000 (Meta: R$ 15.000)
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
-...
+RESUMO DE GASTOS (OUT/2025):
+- Moradia: R$ 1.500
+- Alimentação: R$ 870
+- Lazer/Streaming: R$ 55.90
+- Transferência p/ Investimento: R$ 1.000
 ```
